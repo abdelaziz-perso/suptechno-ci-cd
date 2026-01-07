@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World - Version 1.0</h1>');
+    res.send('<h1>Hello World - Version 2.0</h1>');
 });
 
 app.get('/health', (req, res) => {

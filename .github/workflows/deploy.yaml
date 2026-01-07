@@ -23,7 +23,7 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
       
       - name: Deploy sur serveur
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
@@ -37,5 +37,3 @@ jobs:
             sleep 5
             curl -k -f https://localhost:3000/health || exit 1
             echo "Déploiement réussi !"
-
-
