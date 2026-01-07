@@ -28,13 +28,14 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
             docker stop mon-app || true
             docker rm mon-app || true
             docker run -d --name mon-app -p 3000:3000 --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
             sleep 5
-            curl -f http://localhost:3000/health || exit 1
+            curl -k -f https://localhost:3000/health || exit 1
             echo "Déploiement réussi !"
 
 
